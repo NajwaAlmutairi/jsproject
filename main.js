@@ -4,7 +4,7 @@ let optionOne = document.getElementById('optionOne');
 let optionTwo = document.getElementById('optionTwo');
 let optionthree = document.getElementById('optionthree');
 
-
+let scoretext = document.getElementById('score-num');
 let title = document.getElementById('title');
 let timeLine = document.getElementById("time-line");
 let timeText = document.getElementById("time-text");
@@ -75,7 +75,7 @@ const questionsList3 = [{
     options: ["10", "8", "7"],
     answer: "10",
 }, {
-    question: "متى تولى الملك سلمان بن عبدالعزيز (أيٌده الله) حكم المملكة العربية السعودية ؟",
+    question: "متى تولى الملك سلمان بن عبدالعزيز (أيده الله) حكم المملكة العربية السعودية ؟",
     options: ["2016", "2014", "2015"],
     answer: "2015",
 }, {
@@ -100,15 +100,6 @@ const questionsList3 = [{
     answer: "وادي الرمة",
 }]
 
-
-
-
-function fillQuestionAndAnswers(objQ) {
-    question.innerText = objQ.question
-    optionOne.innerText = objQ.options[0];
-    optionTwo.innerText = objQ.options[1];
-    optionthree.innerText = objQ.options[2];
-}
 
 function getQuestionType() {
 
@@ -135,7 +126,12 @@ function getQuestionType() {
 window.onload = getQuestionType;
 
 
-
+function fillQuestionAndAnswers(objQ) {
+    question.innerText = objQ.question
+    optionOne.innerText = objQ.options[0];
+    optionTwo.innerText = objQ.options[1];
+    optionthree.innerText = objQ.options[2];
+}
 
 function getTheCorrectAnswer(event) {
     let clickedButton = event.target;
@@ -160,6 +156,7 @@ function getTheCorrectAnswer(event) {
     if (currentQuestion.answer === clickedButton.innerText) {
         clickedButton.classList.add("successbtn")
         score += 1;
+        scoretext.innerText = score;
     } else if (currentQuestion.answer === optionOneValue) {
         optionOne.classList.add("successbtn")
         clickedButton.classList.add("wrongbtn");
@@ -235,7 +232,7 @@ function nextQuestion() {
         clearInterval(counter);
         clearInterval(counterLine);
         timeCount.innerText = 15
-        timeText.textContent = " الوقت المتبقي";
+        timeText.textContent = "الوقت المتبقي:";
         startTimer(15);
         timerLine(0);
         totalQuefun(questionCounter);
@@ -260,91 +257,92 @@ function nextQuestion() {
 }
 
 
-
 function endOfthetest() {
     if (questionCounter === questionTypeList.length) {
-        const box = document.getElementById('question-container');
-        const header = document.getElementById('header');
-        const bodySection = document.getElementById('body-section');
-        const footer = document.getElementById('footer');
-        console.log(score);
-        console.log(questionTypeList);
-        let successMessage = document.createElement('div');
-        let wintext = document.createElement('h2');
-        let winimage = document.createElement('img')
-        let goHome = document.createElement('button')
+        clearInterval(counter);
+        clearInterval(counterLine);
 
-        if (questionCounter === questionTypeList.length && score === 0) {
+        // Delay the display of the congrats message
+        setTimeout(() => {
+            const box = document.getElementById('question-container');
+            const header = document.getElementById('header');
+            const bodySection = document.getElementById('body-section');
+            const footer = document.getElementById('footer');
+            let successMessage = document.createElement('div');
+            let wintext = document.createElement('h2');
+            let winimage = document.createElement('img');
+            let buttonsContainer = document.createElement('div');
+            let goHome = document.createElement('button');
+            let retakeExam = document.createElement('button');
 
-            winimage.src = "/images/win6.gif"
-            wintext.innerText = 'افااااااااااا';
-            wintext.style.color = 'purple';
+            // Determine the message based on the score
+            if (score === 0) {
+                winimage.src = "/images/win6.gif";
+                wintext.innerText = 'افااااااااااا!!!';
+                wintext.style.color = 'purple';
+            } else if (score <= 2) {
+                winimage.src = "/images/backgroundImage48.jpg";
+                wintext.innerText = '🤝معليه المره الجاية أفضل';
+                wintext.style.color = 'purple';
+            } else if (score <= 4) {
+                winimage.src = "/images/backgroundImage45.jpg";
+                wintext.innerText = 'والله كفــو عليـــك !!!!';
+                wintext.style.color = 'green';
+            } else if (score === 5 && type !== 'third') {
+                winimage.src = "/images/win.gif";
+                wintext.innerText = `مبروك! جبت الخمس نقاط يا بطل!\nالسعودية كلها فخورة فيك`;
+                wintext.style.color = 'green';
+            } else if (score === 5 && type === 'third') {
+                winimage.src = "/images/backgroundImage50.jpg";
+                wintext.innerText = `أنت كفـــووووو!!!`;
+                wintext.style.color = 'green';
+            } else if (score >= 6 && score <= 7) {
+                winimage.src = "/images/win3.gif";
+                wintext.innerText = 'أنت فنـــــــــــــان!!!!!';
+                wintext.style.color = 'green';
+            } else if (score === 8) {
+                winimage.src = "/images/win2.gif";
+                wintext.innerText = `مبروك! جبت العلامة الكاملة!\nالسعودية كلها فخورة فيك`;
+                wintext.style.color = 'green';
+            }
 
-        } else if (questionCounter === questionTypeList.length && (score === 1 || score === 2)) {
+            // Remove all question elements from the DOM
+            optionOne.remove();
+            optionTwo.remove();
+            optionthree.remove();
+            nextBtn.remove();
+            question.remove();
+            timeLine.remove();
+            timeText.remove();
+            timeCount.remove();
+            totalQue.remove();
+            header.remove();
+            bodySection.remove();
+            footer.remove();
 
-            winimage.src = "/images/backgroundImage48.jpg"
-            wintext.innerText = '🤝معليه المره الجاية أفضل';
-            wintext.style.color = 'purple';
+            goHome.innerText = "العودة للصفحة الرئيسية";
+            goHome.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+            goHome.classList.add('buttonWin');
 
-        } else if (questionCounter === questionTypeList.length && (score === 3 || score === 4)) {
+            retakeExam.innerText = "إعادة الاختبار";
+            retakeExam.classList.add('retakebutton');
+            retakeExam.addEventListener('click', () => {
+                location.reload();
+            });
 
-            winimage.src = "/images/backgroundImage45.jpg"
-            wintext.innerText = 'والله كفــو عليـــك !!!!';
-            wintext.style.color = 'green';
+            winimage.classList.add('image');
+            successMessage.classList.add('windiv');
+            buttonsContainer.classList.add('buttonsContainer');
 
-        } else if (questionCounter === questionTypeList.length && score === 5 && type != 'third') {
+            successMessage.appendChild(winimage);
+            successMessage.appendChild(wintext);
+            buttonsContainer.appendChild(goHome);
+            buttonsContainer.appendChild(retakeExam);
+            successMessage.appendChild(buttonsContainer);
 
-            winimage.src = "/images/win.gif"
-            wintext.innerText = `مبروك! جبت الخمس نقاط يا بطل!\nالسعودية كلها فخورة فيك`;
-            wintext.style.color = 'green';
-
-        } else if (questionCounter === questionTypeList.length && score === 5 && type === 'third') {
-
-            winimage.src = "/images/backgroundImage50.jpg"
-            wintext.innerText = `!!!أنت كفـــووووو`;
-            wintext.style.color = 'green';
-
-        } else if (questionCounter === questionTypeList.length && (score === 6 || score === 7)) {
-
-            winimage.src = "/images/win3.gif"
-            wintext.innerText = '!!!!!أنت فنـــــــــــــان';
-            wintext.style.color = 'green';
-
-        } else if (questionCounter === questionTypeList.length && score === 8) {
-
-            winimage.src = "/images/win2.gif"
-            wintext.innerText = `مبروك! جبت العلامة الكاملة!\nالسعودية كلها فخورة فيك`;
-            wintext.style.color = 'green';
-        }
-
-        optionOne.remove();
-        optionTwo.remove();
-        optionthree.remove();
-        nextBtn.remove();
-        question.remove();
-        timeLine.remove();
-        timeText.remove();
-        timeCount.remove();
-        totalQue.remove();
-        header.remove();
-        bodySection.remove();
-        footer.remove();
-
-        goHome.innerText = "العودة للصفحة الرئيسية"
-        goHome.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        })
-        goHome.classList.add('buttonWin')
-
-
-        winimage.classList.add('image');
-        successMessage.classList.add('windiv');
-
-
-        successMessage.appendChild(winimage);
-        successMessage.appendChild(wintext);
-        successMessage.appendChild(goHome);
-
-        box.appendChild(successMessage);
+            box.appendChild(successMessage);
+        }, 1000);
     }
 }

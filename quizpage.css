@@ -27,7 +27,6 @@ body {
     justify-content: flex-start;
     height: 90vh;
     width: 70%;
-    /* background-color: white; */
     padding-top: 10px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 10px;
@@ -38,13 +37,11 @@ body {
     height: 10vh;
     width: 95%;
     padding: 0 1vw;
-    /* background: #606E52; */
     background-color: white;
     border-radius: 5px 5px 0 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* box-shadow:rgba(0, 0, 0, 0.5)  0px 0px 0px 10px ; */
     border-bottom: 1px solid black;
 }
 
@@ -52,11 +49,29 @@ body {
 .question-container .header .title {
     font-size: 2rem;
     font-weight: 600;
-    width: 75%;
+    width: 60%;
 }
 
+.question-container .header .score {
+    width: 15%;
+    display: flex;
+    align-items: center;
+}
+
+.question-container .header .score-text {
+    font-size: 1.5rem;
+}
+
+.question-container .header .score-num {
+    margin-right: 4px;
+    font-size: 1.5rem;
+    color: burlywood;
+
+}
+
+
 .question-container .header .timer {
-    width: 11vw;
+    width: 17%;
     height: 8vh;
     color: #1e402a;
     background: #C0CCA4;
@@ -75,15 +90,8 @@ body {
 .question-container .timer .time-sec {
     font-size: 1.8rem;
     font-weight: 700;
-    /* height: 30px;
-    width: 45px; */
-    /* color: #fff; */
     color: red;
-    /* border-radius: 5px; */
-    /* line-height: 30px; */
     text-align: center;
-    /* background: #131e17;
-    border: 1px solid #131e17; */
 }
 
 .question-container .body-section .time-line {
@@ -93,8 +101,6 @@ body {
 }
 
 .body-section {
-    /* padding: 25px 30px 20px 30px; */
-    /* padding-top: 1rem; */
     width: 98%;
     height: 65vh;
     background: white;
@@ -104,7 +110,7 @@ body {
     justify-content: flex-start;
     gap: 2rem;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 0px;
+
 }
 
 .body-section .question {
@@ -118,7 +124,6 @@ body {
 
 .question-opthion-class {
     width: 100%;
-    /* height: 50vh; */
     height: 40vh;
     display: flex;
     flex-direction: column;
@@ -128,15 +133,12 @@ body {
 .body-section .question-opthion-class button {
     width: 98%;
     height: 30%;
-    /* display: block; */
     margin-right: 10px;
     padding-right: 1rem;
     text-align: start;
     padding-right: 1rem;
     background-color: burlywood;
     border: 2px solid rgb(205, 164, 111);
-    /* background-color: white;
-    border: 2px solid #474747; */
     border-radius: 10px;
     font-size: 1.3rem;
     cursor: pointer;
@@ -151,7 +153,6 @@ body {
 }
 
 .body-section .question-opthion-class button.successbtn {
-    /* background-color: #606E52; */
     color: #155724;
     background-color: #C0CCA4;
     border: 1px solid #ccd4ba;
@@ -159,7 +160,7 @@ body {
 
 .body-section .question-opthion-class button.wrongbtn {
     color: #721c24;
-    background-color: #f9c9c9;
+    background-color: #dda1a1;
     border: 1px solid #f5c6cb;
 }
 
@@ -167,18 +168,18 @@ body {
     pointer-events: none;
 }
 
-/*  */
 
 .footer {
-    /* border-top: 1px solid lightgrey; */
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 .5rem;
-    width: 96.2%;
+    width: 98%;
     height: 9vh;
-    /* box-shadow:rgba(0, 0, 0, 0.5)  0px 3px 10px ; */
+}
+
+.footer #totalQue {
+    padding: 0 .5rem;
 }
 
 .footer button {
@@ -194,6 +195,7 @@ body {
     font-weight: 400;
     opacity: 0;
     pointer-events: none;
+    margin-left: 10px;
 }
 
 .footer button:hover {
@@ -217,32 +219,129 @@ body {
     border: 4px solid purple;
 }
 
-.buttonWin {
-    width: 15vw;
-    height: 7vh;
-    background-color: burlywood;
-    border: 2px solid rgb(205, 164, 111);
-    border-radius: 10px;
-    font-size: 1.3rem;
+
+
+.buttonsContainer {
+    width: 28vw;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    border: 2px solid purple;
 }
 
+.buttonWin {
+    font-size: 1.3rem;
+    width: 14vw;
+    height: 6vh;
+    background-color: #606E52;
+    color: #C0CCA4;
+    border: none;
+}
+
+.retakebutton {
+    width: 14vw;
+    height: 6vh;
+    font-size: 1.3rem;
+    background-color: #606E52;
+    color: #C0CCA4;
+    border: none;
+    border-right: 1px solid black;
+
+}
 
 .buttonWin:hover {
-    background-color: rgb(184, 147, 98);
+    background-color: #91A56E;
+    color: white;
+
+}
+
+.retakebutton:hover {
+    background-color: #91A56E;
+    color: white;
+
 }
 
 .image {
     width: 33vw;
-    height: 70vh;
+    height: 63vh;
 }
 
-/*  */
 
 @media only screen and (max-width:600px) {
     .question-container {
         height: 115vh;
         width: 96%;
         padding-top: 10px;
+    }
+
+    .question-container .header {
+        height: 10vh;
+        width: 96%;
+        padding: 0 1vw;
+    }
+
+    .question-container .header .title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        width: 40%;
+    }
+
+    .question-container .header .score-text {
+        font-size: 1.2rem;
+    }
+
+    .question-container .header .score-num {
+        margin-right: 4px;
+        font-size: 1.2rem;
+    }
+
+    .question-container .header .timer {
+        height: 8vh;
+        padding-left: 4px;
+        padding-right: 2px;
+    }
+
+    .question-container .header .timer .time-text {
+        font-size: 1rem;
+    }
+
+    .question-container .timer .time-sec {
+        font-size: 1.2rem;
+    }
+
+    .body-section {
+        height: 71vh;
+        gap: 1rem;
+    }
+
+    .body-section .question {
+        font-size: 1.7rem;
+    }
+
+    .body-section .question-opthion-class button {
+        width: auto;
+        height: 30%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .footer button {
+        width: 25vw;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .question-container .header .timer {
+        width: 32%;
+        height: 8vh;
+        padding-left: 4px;
+        padding-right: 2px;
+    }
+
+    .footer button {
+        width: 36vw;
     }
 }
