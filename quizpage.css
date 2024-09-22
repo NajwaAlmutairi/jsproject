@@ -1,0 +1,202 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    font-family: "Amiri", serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-family: "Amiri", serif;
+}
+
+body {
+    background-color: #1e402a;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 90vh;
+    width: 70%;
+    background-color: #f3f3f3;
+    padding-top: 10px;
+}
+
+
+.question-container .header {
+    height: 10vh;
+    width: 95%;
+    padding: 0 1vw;
+    background: #606E52;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+
+.question-container .header .title {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 75%;
+}
+
+.question-container .header .timer {
+    width: 12vw;
+    height: 8vh;
+    color: #1e402a;
+    background: #C0CCA4;
+    padding: 0 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.question-container .header .timer .time-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.question-container .timer .time-sec {
+    font-size: 1rem;
+    font-weight: 500;
+    height: 30px;
+    width: 45px;
+    color: #fff;
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    background: #131e17;
+    border: 1px solid #131e17;
+}
+
+.question-container .body-section .time-line {
+    height: 3px;
+    background: #1e402a;
+    width: 0px;
+}
+
+.body-section {
+    /* padding: 25px 30px 20px 30px; */
+    /* padding-top: 1rem; */
+    width: 98%;
+    height: 65vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3rem;
+    overflow: hidden;
+}
+
+.body-section .question {
+    font-size: 2rem;
+    font-weight: 600;
+    padding-right: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.question-opthion-class {
+    width: 100%;
+    /* height: 50vh; */
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.body-section .question-opthion-class button {
+    width: 100%;
+    height: 30%;
+    /* display: block; */
+    padding-right: 1rem;
+    text-align: start;
+    padding-right: 1rem;
+    background-color: burlywood;
+    border: 2px solid rgb(205, 164, 111);
+    border-radius: 10px;
+    font-size: 1.3rem;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body-section .question-opthion-class button:hover {
+    background-color: rgb(184, 147, 98);
+}
+
+.body-section .question-opthion-class button.successbtn {
+    /* background-color: #606E52; */
+    color: #155724;
+    background-color: #C0CCA4;
+    border: 1px solid #ccd4ba;
+}
+
+.body-section .question-opthion-class button.wrongbtn {
+    color: #721c24;
+    background-color: #f9c9c9;
+    border: 1px solid #f5c6cb;
+}
+
+.body-section .question-opthion-class button.disabled {
+    pointer-events: none;
+}
+
+/*  */
+
+.footer {
+    border-top: 1px solid lightgrey;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .5rem;
+    width: 96%;
+    height: 9vh;
+}
+
+.footer button {
+    color: #fff;
+    width: 10vw;
+    height: 8vh;
+    text-align: center;
+    background-color: rgb(71, 47, 18);
+    border: 2px solid rgb(115, 82, 43);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 400;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.footer button:hover {
+    background: rgb(131, 94, 49);
+}
+
+.footer button.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/*  */
+
+
+
+
