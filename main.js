@@ -276,7 +276,8 @@ function totalQuefun(index) {
 
 function timerLine(time) {
     let parentWidth = timeLine.parentElement.clientWidth;
-    counterLine = setInterval(timer, 18.5);
+    let intervalTime = window.innerWidth < 600 ? 41 : 18.5; // Slower on mobile
+    counterLine = setInterval(timer, intervalTime);
     function timer() {
         time += 1;
         timeLine.style.width = time + "px";
@@ -353,24 +354,24 @@ function endOfthetest() {
             } else if (score <= 4) {
                 winimage.src = "backgroundImage45.jpg";
                 wintext.innerText = 'والله كفــو عليـــك !!!!';
-                wintext.style.color = 'green';
+                wintext.style.color = '#979750';
             } else if (score === 5 && type !== 'third') {
                 winimage.src = "win.gif";
                 wintext.innerText = `مبروك! جبت الخمس نقاط يا بطل!\nالسعودية كلها فخورة فيك`;
-                wintext.style.color = 'green';
+                wintext.style.color = '#979750';
             } else if (score === 5 && type === 'third') {
                 winimage.src = "backgroundImage50.jpg";
                 wintext.innerText = `أنت كفـــووووو!!!`;
-                wintext.style.color = 'green';
+                wintext.style.color = '#979750';
             } else if (score >= 6 && score <= 7) {
                 // winimage.src = "/images/win3.gif";
                 winimage.src = "backgroundImage50.jpg";
                 wintext.innerText = 'أنت فنـــــــــــــان!!!!!';
-                wintext.style.color = 'green';
+                wintext.style.color = '#979750';
             } else if (score === 8) {
                 winimage.src = "win2.gif";
                 wintext.innerText = `مبروك! جبت العلامة الكاملة!\nالسعودية كلها فخورة فيك`;
-                wintext.style.color = 'green';
+                wintext.style.color = '#979750';
             }
 
             // Remove all question elements from the DOM

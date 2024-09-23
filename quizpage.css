@@ -142,6 +142,7 @@ body {
     border-radius: 10px;
     font-size: 1.3rem;
     cursor: pointer;
+    color: black;
 
     display: flex;
     justify-content: space-between;
@@ -270,8 +271,11 @@ body {
 
 
 @media only screen and (max-width:600px) {
+    body{
+        height: 86vh;
+    }
     .question-container {
-        height: 115vh;
+        height: 76vh;
         width: 96%;
         padding-top: 10px;
     }
@@ -304,15 +308,14 @@ body {
     }
 
     .question-container .header .timer .time-text {
-        font-size: 1rem;
-    }
-
-    .question-container .timer .time-sec {
         font-size: 1.2rem;
     }
 
+    .question-container .timer .time-sec {
+        font-size: 1.3rem;
+    }
     .body-section {
-        height: 71vh;
+        height: 56vh;
         gap: 1rem;
     }
 
@@ -333,11 +336,11 @@ body {
 
     .windiv {
         width: 90%;
-        height: 94vh;
+        height: 69vh;
     }
 
     .image {
-        width: 44vw;
+        width: 50vw;
         height: 39vh;
     }
 
@@ -371,7 +374,7 @@ body {
 
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
     .question-container .header .timer {
         width: 32%;
         height: 8vh;
