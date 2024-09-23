@@ -331,6 +331,44 @@ body {
         width: 25vw;
     }
 
+    .windiv {
+        width: 90%;
+        height: 94vh;
+    }
+
+    .image {
+        width: 44vw;
+        height: 39vh;
+    }
+
+    .buttonWin {
+        font-size: 1.2rem;
+        width: 42vw;
+        height: 6vh;
+        background-color: #606E52;
+        color: #C0CCA4;
+        border: none;
+    }
+
+    .retakebutton {
+        width: 41vw;
+        height: 6vh;
+        font-size: 1.2rem;
+        background-color: #606E52;
+        color: #C0CCA4;
+        border: none;
+        border-right: 1px solid black;
+    }
+
+    .windiv h2 {
+        color: green;
+        font-size: 1.3rem;
+    }
+
+    .buttonsContainer {
+        width: 82vw;
+    }
+
 }
 
 @media only screen and (max-width: 400px) {

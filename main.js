@@ -1,4 +1,3 @@
-
 let question = document.getElementById('question');
 let optionOne = document.getElementById('optionOne');
 let optionTwo = document.getElementById('optionTwo');
@@ -15,11 +14,17 @@ let totalQue = document.getElementById("totalQue");
 const params = new URLSearchParams(window.location.search);
 const type = params.get('type');
 
+
+const header = document.getElementById('header');
+const bodySection = document.getElementById('body-section');
+const footer = document.getElementById('footer');
+
 let counter;
 let counterLine;
 let questionCounter = 1;
 let questionTypeList;
 let score = 0;
+let audio;
 
 const questionsList = [{
     question: "من هو مؤسس الدولة السعودية الأولى ؟",
@@ -69,7 +74,7 @@ const questionsList3 = [{
     question: "ما هو تاريخ توحيد المملكة العربية السعودية ؟",
     options: ["23 سبتمبر 1932م", "23 سبتمبر 1933م", "22 سبتمبر 1932م"],
     answer: "23 سبتمبر 1932م",
-    // مقطع صوت
+    // audio adding
 }, {
     question: "ماهي الفترة الزمنية بين السعودية الثانية والثالثة ..... سنوات ؟",
     options: ["10", "8", "7"],
@@ -100,6 +105,57 @@ const questionsList3 = [{
     answer: "وادي الرمة",
 }]
 
+if (type === 'first') {
+    title.innerText = 'السعودية الأولى'
+} else if (type === 'second') {
+    title.innerText = 'السعودية الثانية'
+} else if (type === 'third') {
+    title.innerText = 'السعودية الثالثة'
+} else {
+    title.innerText = 'السعودية الأولى'
+}
+
+
+window.onload = function () {
+    showCountdown();
+}
+
+function showCountdown() {
+    let overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.zIndex = '1000';
+    document.body.appendChild(overlay);
+
+    // countdown
+    let countdownContainer = document.createElement('div');
+    countdownContainer.style.position = 'fixed';
+    countdownContainer.style.top = '50%';
+    countdownContainer.style.left = '50%';
+    countdownContainer.style.transform = 'translate(-50%, -50%)';
+    countdownContainer.style.fontSize = '4rem';
+    countdownContainer.style.color = 'white';
+    countdownContainer.style.zIndex = '1001';
+    document.body.appendChild(countdownContainer);
+
+    let count = 3;
+    let countdownInterval = setInterval(() => {
+        countdownContainer.innerText = count;
+        count--;
+        if (count < 0) {
+            clearInterval(countdownInterval);
+            countdownContainer.remove();
+            overlay.remove();
+            getQuestionType();
+        }
+    }, 1000);
+}
+
+
 
 function getQuestionType() {
 
@@ -123,32 +179,38 @@ function getQuestionType() {
     totalQuefun(1);
 }
 
-window.onload = getQuestionType;
-
 
 function fillQuestionAndAnswers(objQ) {
-    question.innerText = objQ.question
+    question.innerText = objQ.question;
     optionOne.innerText = objQ.options[0];
     optionTwo.innerText = objQ.options[1];
     optionthree.innerText = objQ.options[2];
+
+
+    if (questionTypeList === questionsList3 && questionTypeList.indexOf(objQ) === 0) {
+        audio = document.getElementById('questionAudio');
+        audio.currentTime = 0;
+        audio.play();
+
+        setTimeout(() => {
+            audio.pause();
+        }, 14000);
+    }
 }
+
 
 function getTheCorrectAnswer(event) {
     let clickedButton = event.target;
-    console.log("clickedButton");
-    console.log("clickedButton.innerText", clickedButton.innerText);
-
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
     let questionValue = question.innerText.trim();
     let optionOneValue = optionOne.innerText.trim();
     let optionTwoValue = optionTwo.innerText.trim();
     let optionthreeValue = optionthree.innerText.trim();
 
-    console.log("questionValue", questionValue);
-    console.log("optionTwoValue", optionTwoValue, "optionthreeValue", optionthreeValue);
-
     let currentQuestion = questionTypeList.find((ele) => ele.question.trim() === questionValue)
-
-    console.log("currentQuestion", currentQuestion);
 
     clearInterval(counter);
     clearInterval(counterLine);
@@ -227,6 +289,10 @@ function timerLine(time) {
 
 function nextQuestion() {
     if (questionCounter <= questionTypeList.length - 1) {
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
         fillQuestionAndAnswers(questionTypeList[questionCounter]);
         questionCounter += 1;
         clearInterval(counter);
@@ -264,10 +330,10 @@ function endOfthetest() {
 
         // Delay the display of the congrats message
         setTimeout(() => {
-            const box = document.getElementById('question-container');
-            const header = document.getElementById('header');
-            const bodySection = document.getElementById('body-section');
-            const footer = document.getElementById('footer');
+            let box = document.getElementById('question-container');
+            let header = document.getElementById('header');
+            let bodySection = document.getElementById('body-section');
+            let footer = document.getElementById('footer');
             let successMessage = document.createElement('div');
             let wintext = document.createElement('h2');
             let winimage = document.createElement('img');
@@ -277,31 +343,32 @@ function endOfthetest() {
 
             // Determine the message based on the score
             if (score === 0) {
-                winimage.src = "/images/win6.gif";
+                winimage.src = "win6.gif";
                 wintext.innerText = 'افااااااااااا!!!';
                 wintext.style.color = 'purple';
             } else if (score <= 2) {
-                winimage.src = "/images/backgroundImage48.jpg";
+                winimage.src = "backgroundImage48.jpg";
                 wintext.innerText = '🤝معليه المره الجاية أفضل';
                 wintext.style.color = 'purple';
             } else if (score <= 4) {
-                winimage.src = "/images/backgroundImage45.jpg";
+                winimage.src = "backgroundImage45.jpg";
                 wintext.innerText = 'والله كفــو عليـــك !!!!';
                 wintext.style.color = 'green';
             } else if (score === 5 && type !== 'third') {
-                winimage.src = "/images/win.gif";
+                winimage.src = "win.gif";
                 wintext.innerText = `مبروك! جبت الخمس نقاط يا بطل!\nالسعودية كلها فخورة فيك`;
                 wintext.style.color = 'green';
             } else if (score === 5 && type === 'third') {
-                winimage.src = "/images/backgroundImage50.jpg";
+                winimage.src = "backgroundImage50.jpg";
                 wintext.innerText = `أنت كفـــووووو!!!`;
                 wintext.style.color = 'green';
             } else if (score >= 6 && score <= 7) {
-                winimage.src = "/images/win3.gif";
+                // winimage.src = "/images/win3.gif";
+                winimage.src = "backgroundImage50.jpg";
                 wintext.innerText = 'أنت فنـــــــــــــان!!!!!';
                 wintext.style.color = 'green';
             } else if (score === 8) {
-                winimage.src = "/images/win2.gif";
+                winimage.src = "win2.gif";
                 wintext.innerText = `مبروك! جبت العلامة الكاملة!\nالسعودية كلها فخورة فيك`;
                 wintext.style.color = 'green';
             }
