@@ -189,12 +189,13 @@ function fillQuestionAndAnswers(objQ) {
 
     if (questionTypeList === questionsList3 && questionTypeList.indexOf(objQ) === 0) {
         audio = document.getElementById('questionAudio');
-        audio.currentTime = 0;
-        audio.play();
-
-        setTimeout(() => {
-            audio.pause();
-        }, 14000);
+        if (audio) {
+            audio.currentTime = 0; 
+            audio.play();
+            setTimeout(() => {
+                audio.pause(); 
+            }, 14000);
+        }
     }
 }
 
@@ -276,16 +277,19 @@ function totalQuefun(index) {
 
 function timerLine(time) {
     let parentWidth = timeLine.parentElement.clientWidth;
+    let totalTime = 15; 
     let intervalTime = window.innerWidth < 600 ? 41 : 18.5; // Slower on mobile
-    counterLine = setInterval(timer, intervalTime);
-    function timer() {
-        time += 1;
+
+    counterLine = setInterval(() => {
+        time += (parentWidth / totalTime) * (intervalTime / 1000); 
         timeLine.style.width = time + "px";
-        if (time > parentWidth) {
+
+        if (time >= parentWidth) {
             clearInterval(counterLine);
         }
-    }
+    }, intervalTime);
 }
+
 
 
 function nextQuestion() {

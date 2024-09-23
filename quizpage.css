@@ -315,7 +315,8 @@ body {
         font-size: 1.3rem;
     }
     .body-section {
-        height: 56vh;
+        height: 58vh;
+        /* 56vh */
         gap: 1rem;
     }
 
