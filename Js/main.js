@@ -1,3 +1,7 @@
+if (localStorage.getItem('userId') === null) {
+    window.location.href = 'login.html';
+} 
+
 let question = document.getElementById('question');
 let optionOne = document.getElementById('optionOne');
 let optionTwo = document.getElementById('optionTwo');
@@ -240,7 +244,6 @@ function getTheCorrectAnswer(event) {
     optionthree.classList.add("disabled");
 
     nextBtn.classList.add("show");
-    console.log(score);
     endOfthetest()
 
 }
@@ -348,32 +351,32 @@ function endOfthetest() {
 
             // Determine the message based on the score
             if (score === 0) {
-                winimage.src = "win6.gif";
+                winimage.src = "images/win6.gif";
                 wintext.innerText = 'افااااااااااا!!!';
                 wintext.style.color = 'purple';
             } else if (score <= 2) {
-                winimage.src = "backgroundImage48.jpg";
+                winimage.src = "images/backgroundImage48.jpg";
                 wintext.innerText = '🤝معليه المره الجاية أفضل';
                 wintext.style.color = 'purple';
             } else if (score <= 4) {
-                winimage.src = "backgroundImage45.jpg";
+                winimage.src = "images/backgroundImage45.jpg";
                 wintext.innerText = 'والله كفــو عليـــك !!!!';
                 wintext.style.color = '#979750';
             } else if (score === 5 && type !== 'third') {
-                winimage.src = "win.gif";
+                winimage.src = "images/win.gif";
                 wintext.innerText = `مبروك! جبت الخمس نقاط يا بطل!\nالسعودية كلها فخورة فيك`;
                 wintext.style.color = '#979750';
             } else if (score === 5 && type === 'third') {
-                winimage.src = "backgroundImage50.jpg";
+                winimage.src = "images/backgroundImage50.jpg";
                 wintext.innerText = `أنت كفـــووووو!!!`;
                 wintext.style.color = '#979750';
             } else if (score >= 6 && score <= 7) {
                 // winimage.src = "/images/win3.gif";
-                winimage.src = "backgroundImage50.jpg";
+                winimage.src = "images/backgroundImage50.jpg";
                 wintext.innerText = 'أنت فنـــــــــــــان!!!!!';
                 wintext.style.color = '#979750';
             } else if (score === 8) {
-                winimage.src = "win2.gif";
+                winimage.src = "images/win2.gif";
                 wintext.innerText = `مبروك! جبت العلامة الكاملة!\nالسعودية كلها فخورة فيك`;
                 wintext.style.color = '#979750';
             }

@@ -15,3 +15,17 @@ function callingQuestionPage(event) {
     }
     window.location.href = `quizpage.html?type=${questionType}`;
 }
+// for the typing of the text in the header
+const headText = "احتفالاً باليوم الوطني السعودي 94";
+const speed1 = 50;
+let i = 0;
+
+function typeWriterHead() {
+  if (i < headText.length) {
+    document.getElementById("myhead").innerHTML += headText.charAt(i);
+    i++;
+    setTimeout(typeWriterHead, speed1);
+  }
+}
+
+typeWriterHead();
