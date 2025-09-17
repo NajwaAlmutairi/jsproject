@@ -16,7 +16,7 @@ function callingQuestionPage(event) {
     window.location.href = `quizpage.html?type=${questionType}`;
 }
 // for the typing of the text in the header
-const headText = "احتفالاً باليوم الوطني السعودي 94";
+const headText = "احتفالاً باليوم الوطني السعودي 95";
 const speed1 = 50;
 let i = 0;
 
